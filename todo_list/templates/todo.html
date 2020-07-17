@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- BOOTSTRAP THEME -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.min.css">
+
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap.min-12.css">
+
+  </head>
+
+
+
+    <h1>Welcome to your To-Do List!</h1>
+
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+            <div class="card-header">Your list</div>
+            <div class="card-body">
+              <h4 class="card-title">Things To Do!</h4>
+              <ul>
+                    {% for todo_item in all_items %}
+                        <li>{{ todo_item.content }}</li>
+                            <form action="/deleteTodo/{{todo_item.id}}/" 
+                                    method="post">{% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Complete</button>
+                                    <hr>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            
+            
+            
+                <form action="/addTodo/" method="post">{% csrf_token %}
+                    <div class="form-group">
+                            <label class="col-form-label" for="inputDefault"></label>
+                            <input type="text" name="content" class="form-control" placeholder="Add new item to your list!" id="inputDefault">
+                            <button type="submit" class="btn btn-danger">Add New Item!</button>
+                          </div>    
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+</html>
